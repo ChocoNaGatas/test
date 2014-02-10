@@ -78,17 +78,18 @@
 		<div class="tabbable" id="tabs-931288">
 				<ul class="nav nav-pills">
 					<li class="active">
-						<a href="#panel-1" data-toggle="tab">Search Book</a>
+						<a href="#panel-1" data-toggle="tab">Manage Books</a>
 					</li>
 					<li>
-						<a href="#panel-2" data-toggle="tab">Add a Book</a>
+						<a href="#panel-2" data-toggle="tab">Manage Accounts</a>
 					</li>
 					<li>
-						<a href="#panel-3" data-toggle="tab">Remove a Book</a>
+						<a href="#panel-3" data-toggle="tab">Manage Books</a>
 					</li>
 					<li>
-						<a href="#panel-4" data-toggle="tab">Edit Book Info</a>
+						<a href="#panel-4" data-toggle="tab">Manage Accounts</a>
 					</li>
+					<li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="panel-1">
@@ -128,6 +129,47 @@
 						<div class="col-md-2 column">
 						<!-- Third div -->
 						</div>
+
+						<br>
+						<br>
+						<br>
+						<br>
+						<tr>
+							<td> Call number</td>
+							<td> Title</td>
+							<td> Author</td>
+							<td> ISBN/ISSN</td>
+							<td> Type of Reference</td>
+							<td> Description</td>
+							<td> Editor</td>
+							<td> Publisher</td>
+						</tr>
+
+						<br>
+						<br>
+
+						<?php foreach($query as $row): ?>
+							<tr>
+								<td> <?=$row->call_no?></td>
+								<td> <?=$row->title?></td>
+								<td> <?=$row->author?></td>
+								<td> <?=$row->isbn?></td>
+								<td> <?=$row->book_type?></td>
+								<td> <?=$row->description?></td>
+								<td> <?=$row->editor?></td>
+								<td> <?=$row->publisher?></td>
+
+								<?=form_open('c_book/book_edit_form')?>
+									<input type='hidden' name='bookid' value='<?=$row->book_id?>'/>
+									<input type = "submit" value = "Edit"/>
+								</form>
+								<?=form_open('c_book/book_remove')?>
+									<input type = "hidden" name = "bookid" value = "<?=$row->book_id?>"/>
+									<input type = "submit" value = "Delete"/> <br/>
+								</form>
+							</tr>
+							<br>
+						<?php endforeach; ?>
 					</div>
 						
 						
