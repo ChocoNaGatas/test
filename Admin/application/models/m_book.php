@@ -30,21 +30,17 @@
 		}
 			
 			function update_book(){
-		
-			$data = array(
 			
-				'name' =>  $this->input->post('name'),
-				'username' => $this->input->post('uname'),
-				'password' => $this->input->post('pword'),
-				'email' => $this->input->post('email') ,
-				'mobile_no' =>$this->input->post('cnum') ,
-				'college' => $this->input->post('college') ,
-				'userid_no' => $this->input->post('usr_num'),
-				'user_type' => 'User' ,
-				
-			);
+				$call_no = htmlspecialchars($_POST['callno']);
+				$title = htmlspecialchars($_POST['title']);
+				$author = htmlspecialchars($_POST['author']);
+				$isbn = htmlspecialchars($_POST['isbn']);
+				$book_type = htmlspecialchars($_POST['btype']);
+				$description = htmlspecialchars($_POST['descr']);
+				$editor = htmlspecialchars($_POST['editor']);
+				$publisher = htmlspecialchars($_POST['pub']);
 		
-			$this->db->insert('user', $data);
+				$this->db->query("Update book set call_no = '$call_no', title = '$title', author = '$author', isbn = '$isbn', book_type = '$book_type', description = '$description', editor = '$editor', publisher = '$publisher', where book_id = '$bookid'");
 		
 		}
 
