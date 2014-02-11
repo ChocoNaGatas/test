@@ -19,7 +19,16 @@ class C_index extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('v_admin');
+		$data['query'] = $this->m_book->view_all_books();
+		$this->load->view('v_admin',$data);
+	}
+
+	public function c_index()
+	{
+		parent::__construct();
+		$this->load->model('m_book');
+		$this->load->helper('url');
+		$this->load->helper('form');
 	}
 }
 

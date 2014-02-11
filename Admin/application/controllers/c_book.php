@@ -17,11 +17,6 @@ class c_book extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index()
-	{
-		$data['query'] = $this->m_book->viewBooks('book');
-		$this->load->view('home',$data);
-	}
 
 	public function c_book()
 	{
@@ -34,27 +29,30 @@ class c_book extends CI_Controller {
 	public function book_add(){
 		
 		$this->m_book->insert_book();
-		
 		redirect('/c_index/','refresh');
 	
 	}
 	
 	public function book_remove(){
-		
+	
 		$this->m_book->delete_book();
-		
 		redirect('/c_index/','refresh');
 	
+	}
+
+	public function book_edit_form(){
+
+		$data['query'] = $this->m_book->get_book();
+		$this->load->view('v_editbook',$data);
+
 	}
 		
 	public function book_edit(){
 		
 		$this->m_book->update_book();
-		
 		redirect('/c_index/','refresh');
 	
 	}
-
 	
 }
 
