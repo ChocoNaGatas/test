@@ -29,19 +29,19 @@
 		
 		}
 			
-			function update_book(){
+		function update_book(){
+
+			$book_id = htmlspecialchars($_POST['bookid']);
+			$call_no = htmlspecialchars($_POST['callno']);
+			$title = htmlspecialchars($_POST['title']);
+			$author = htmlspecialchars($_POST['author']);
+			$isbn = htmlspecialchars($_POST['isbn']);
+			$book_type = htmlspecialchars($_POST['btype']);
+			$description = htmlspecialchars($_POST['descr']);
+			$publisher = htmlspecialchars($_POST['pub']);
+		
+			$this->db->query("Update book set call_no='$call_no', title='$title', author='$author', isbn='$isbn', book_type='$book_type', description='$description', publisher='$publisher' WHERE book_id='$book_id'");
 			
-				$call_no = htmlspecialchars($_POST['callno']);
-				$title = htmlspecialchars($_POST['title']);
-				$author = htmlspecialchars($_POST['author']);
-				$isbn = htmlspecialchars($_POST['isbn']);
-				$book_type = htmlspecialchars($_POST['btype']);
-				$description = htmlspecialchars($_POST['descr']);
-				$editor = htmlspecialchars($_POST['editor']);
-				$publisher = htmlspecialchars($_POST['pub']);
-		
-				$this->db->query("Update book set call_no = '$call_no', title = '$title', author = '$author', isbn = '$isbn', book_type = '$book_type', description = '$description', editor = '$editor', publisher = '$publisher', where book_id = '$bookid'");
-		
 		}
 
 		public function view_all_books()

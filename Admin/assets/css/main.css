@@ -1,3 +1,37 @@
 body {
  padding-top: 60px;
 }
+
+table, th, td
+{
+border: 1px solid black;
+text-align: center;
+vertical-align: middle;
+}
+
+table
+{
+width: 90%;
+}
+
+td
+{
+padding: 3px;
+color:black;
+}
+
+tr:nth-child(2n-2)
+{
+background-color:#BFBF9E;
+}
+
+tr:nth-child(2n-1)
+{
+background-color:#FFFFFF;
+}
+
+th
+{
+background-color:#2A2A2A;
+color:white;
+}

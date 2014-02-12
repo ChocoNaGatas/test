@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- ICS Lib Index page AB-4L -->
+<!-- ICSLol Admin Index page AB-4L -->
 
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 	
-	<title>ICS Lib</title>
+	<title>ICSLol - Home</title>
 
 	<!-- CSS Links -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -81,10 +81,10 @@
 						<a href="#panel-1" data-toggle="tab">Manage Books</a>
 					</li>
 					<li>
-						<a href="#panel-2" data-toggle="tab">Manage Accounts</a>
+						<a href="#panel-2" data-toggle="tab">Lend Book</a>
 					</li>
 					<li>
-						<a href="#panel-3" data-toggle="tab">Manage Books</a>
+						<a href="#panel-3" data-toggle="tab">Return Book</a>
 					</li>
 					<li>
 						<a href="#panel-4" data-toggle="tab">Manage Accounts</a>
@@ -134,42 +134,62 @@
 						<br>
 						<br>
 						<br>
-						<tr>
-							<td> Call number</td>
-							<td> Title</td>
-							<td> Author</td>
-							<td> ISBN/ISSN</td>
-							<td> Type of Reference</td>
-							<td> Description</td>
-							<td> Editor</td>
-							<td> Publisher</td>
-						</tr>
-
+						
 						<br>
 						<br>
+						<br>
+						<br>
+						
+						<div class="row" id="main-content">
+							<table>
+								<tr>
+									<th> Call number </th>
+									<th> Title </th>
+									<th> Author </th>
+									<th> ISBN/ISSN </th>
+									<th> Type of Reference </th>
+									<th> Description </th>
+									<th> Editor </th>
+									<th> Publisher </th>
+									<th> Edit Book Info </th>
+									<th> Remove Book </th>
+								</tr>
 
-						<?php foreach($query as $row): ?>
-							<tr>
-								<td> <?=$row->call_no?></td>
-								<td> <?=$row->title?></td>
-								<td> <?=$row->author?></td>
-								<td> <?=$row->isbn?></td>
-								<td> <?=$row->book_type?></td>
-								<td> <?=$row->description?></td>
-								<td> <?=$row->editor?></td>
-								<td> <?=$row->publisher?></td>
 
-								<?=form_open('c_book/book_edit_form')?>
-									<input type='hidden' name='bookid' value='<?=$row->book_id?>'/>
-									<input type = "submit" value = "Edit"/>
-								</form>
-								<?=form_open('c_book/book_remove')?>
-									<input type = "hidden" name = "bookid" value = "<?=$row->book_id?>"/>
-									<input type = "submit" value = "Delete"/> <br/>
-								</form>
-							</tr>
-							<br>
-						<?php endforeach; ?>
+								<?php
+									foreach($query as $row): 
+										echo "<tr>";
+										echo "<td> {$row->call_no} </td>";
+										echo "<td> {$row->title} </td>";
+										echo "<td> {$row->author} </td>";
+										echo "<td> {$row->isbn} </td>";
+										echo "<td> {$row->book_type} </td>";
+										echo "<td> {$row->description} </td>";
+										echo "<td> {$row->editor} </td>";
+										echo "<td> {$row->publisher} </td>";
+
+										echo "<td>";
+										echo "<form name='admin_edit' method='post' action='";
+										echo base_url('/index.php/c_book/book_edit_form');
+										echo "' />";
+										echo "<input type='hidden' name='bookid' value='{$row->book_id}' />";
+										echo "<input type='submit' name='submit' id='submit' class='btn btn-primary' value='Press me' />";
+										echo "</form>";
+										echo "</td>";
+										
+										echo "<td>";
+										echo "<form name='admin_remove' method='post' action='";
+										echo base_url('/index.php/c_book/book_remove');
+										echo "' />";
+										echo "<input type = 'hidden' name = 'bookid' value = '{$row->book_id}' />";
+										echo "<input type='submit' name='submit' id='submit' class='btn btn-danger' value='Press me' />";
+										echo "</form>";
+										echo "</td>";
+										echo "</tr>";
+									endforeach; 
+								?>
+							</table>
+						</div>
 					</div>
 						
 						
@@ -278,4 +298,4 @@
 <!--end of body-->
 
 </html>
-<!--end of v_index-->
+<!--end of v_admin-->

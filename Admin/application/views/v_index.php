@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<!-- ICS Lib Index page AB-4L -->
+<!-- ICSLol Admin Log-in page AB-4L -->
 
 <html lang="en">
 <head>
@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
 	
-	<title>ICS Lib</title>
+	<title>ICSLol - Login</title>
 
 	<!-- CSS Links -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
