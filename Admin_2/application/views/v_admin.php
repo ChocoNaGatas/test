@@ -151,6 +151,116 @@
 									<th> Description </th>
 									<th> Editor </th>
 									<th> Publisher </th>
+									<th> Status </th>
+									<th> Edit Book Info </th>
+									<th> Remove Book </th>
+								</tr>
+
+
+								<?php
+									foreach($query as $row): 
+										echo "<tr>";
+										echo "<td> {$row->call_no} </td>";
+										echo "<td> {$row->title} </td>";
+										echo "<td> {$row->author} </td>";
+										echo "<td> {$row->isbn} </td>";
+										echo "<td> {$row->book_type} </td>";
+										echo "<td> {$row->description} </td>";
+										echo "<td> {$row->editor} </td>";
+										echo "<td> {$row->publisher} </td>";
+										echo "<td> {$row->book_status} </td>";
+
+										echo "<td>";
+										echo "<form name='admin_edit' method='post' action='";
+										echo base_url('/index.php/c_book/book_edit_form');
+										echo "' />";
+										echo "<input type='hidden' name='bookid' value='{$row->book_id}' />";
+										echo "<input type='submit' name='submit' id='submit' class='btn btn-primary' value='Press me' />";
+										echo "</form>";
+										echo "</td>";
+										
+										echo "<td>";
+										echo "<form name='admin_remove' method='post' action='";
+										echo base_url('/index.php/c_book/book_remove');
+										echo "' />";
+										echo "<input type = 'hidden' name = 'bookid' value = '{$row->book_id}' />";
+										echo "<input type='submit' name='submit' id='submit' class='btn btn-danger' value='Press me' />";
+										echo "</form>";
+										echo "</td>";
+										echo "</tr>";
+									endforeach; 
+								?>
+							</table>
+						</div>
+					</div>
+						
+						
+						
+						
+					</div>
+					<div class="tab-pane" id="panel-2">
+						<table>
+								<tr>
+									<th> Call number </th>
+									<th> Title </th>
+									<th> Author </th>
+									<th> ISBN/ISSN </th>
+									<th> Type of Reference </th>
+									<th> Description </th>
+									<th> Editor </th>
+									<th> Publisher </th>
+									<th> Status </th>
+									<th> Lend Book </th>
+								</tr>
+
+
+								<?php
+									foreach($query as $row):
+										if($row->book_status == "ON SHELF"){
+											echo "<tr>";
+											echo "<td> {$row->call_no} </td>";
+											echo "<td> {$row->title} </td>";
+											echo "<td> {$row->author} </td>";
+											echo "<td> {$row->isbn} </td>";
+											echo "<td> {$row->book_type} </td>";
+											echo "<td> {$row->description} </td>";
+											echo "<td> {$row->editor} </td>";
+											echo "<td> {$row->publisher} </td>";
+											echo "<td> {$row->book_status} </td>";
+											
+											echo "<td>";
+											echo "<form name='admin_remove' method='post' action='";
+											echo base_url('/index.php/c_book/book_lend_view');
+											echo "' />";
+											echo "<input type = 'hidden' name = 'bookid' value = '{$row->book_id}' />";
+											echo "<input type='submit' name='submit' id='submit' class='btn btn-danger' value='Press me' />";
+											echo "</form>";
+											echo "</td>";
+											echo "</tr>";
+
+										}
+										
+									endforeach; 
+								?>
+							</table>
+					</div>
+
+
+
+
+
+
+					<div class="tab-pane" id="panel-3">
+						<table>
+								<tr>
+									<th> Call number </th>
+									<th> Title </th>
+									<th> Author </th>
+									<th> ISBN/ISSN </th>
+									<th> Type of Reference </th>
+									<th> Description </th>
+									<th> Editor </th>
+									<th> Publisher </th>
 									<th> Edit Book Info </th>
 									<th> Remove Book </th>
 								</tr>
@@ -189,68 +299,13 @@
 									endforeach; 
 								?>
 							</table>
-						</div>
 					</div>
-						
-						
-						
-						
-					</div>
-					<div class="tab-pane" id="panel-2">
-						<p>
-							<div class="row" id="main-content">
-								<form name='admin_add' method='post' action='<?php echo base_url('/index.php/c_book/book_add')?>'>
-									<fieldset>
-									<legend> Enter Book Information </legend>
-									<br/>
-									<p>
-										<input type='text' name='callno' placeholder='Call number' required/><br/>
-									</p>
-									<p>
-										<input type='text' name='title' placeholder='Title' required/><br/>
-									</p>
-									<p>
-										<input type='text' name='author' placeholder='Author'required/><br/>
-									</p>
-									<p>
-										<input type='text' name='isbn' placeholder='ISBN/ISSN' required/><br/>
-									</p>
-									<p>
-										<input type='text' name='btype' placeholder='Type of Reference' required/><br/>
-									</p>
-									<p>
-										<input type='text' name='descr' placeholder='Description' required/><br/>
-									</p>
-									<p>
-										<input type='text' name='editor' placeholder='Editor <if any>' /><br/>
-									</p>
-									<p>
-										<input type='text' name='pub' placeholder='Publisher' required/><br/>
-									</p>
-									<br/>
-									<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Add book"/>
-									</fieldset>
-								</form>
-							</div>
-						</p>
-					</div>
-					<div class="tab-pane" id="panel-3">
-						<p>
-							<div class="row" id="main-content">
-								<form name='admin_remove' method='post' action='<?php echo base_url('/index.php/c_book/book_remove')?>'>
-									<fieldset>
-									<legend> Enter Book Information </legend>
-									<br/>
-									<p>
-										<input type='text' name='callno' placeholder='Call number' required/><br/>
-									</p>
-									<br/>
-									<input type="submit" name="submit" id="submit" class="btn btn-primary" value="Remove book"/>
-									</fieldset>
-								</form>
-							</div>
-						</p>
-					</div>
+
+
+
+
+
+
 					<div class="tab-pane" id="panel-4">
 						<p>
 							<div class="row" id="main-content">

@@ -74,9 +74,7 @@
 	
 	<div>
 		<?php foreach($query as $row): 
-			echo "<form name='admin_edit' method='post' action='";
-			echo base_url('/index.php/c_book/book_edit');
-			echo "' />";
+			echo "<form name='admin_edit' method='post' action='<?php echo base_url('/index.php/c_book/book_edit')?>'";
 			echo "<table>";
 			echo "<tr><td><label>Call no: </label></td><td><input type='text' name='callno' value='{$row->call_no}' size='50' /></td></tr>";
 			echo "<tr><td><label>Title: </label></td><td><input type='text' name='title' value='{$row->title}' size='50'/></td></tr>";

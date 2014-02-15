@@ -24,6 +24,7 @@ class c_book extends CI_Controller {
 		$this->load->model('m_book');
 		$this->load->helper('url');
 		$this->load->helper('form');
+		$this->load->helper('date');
 	}
 
 	public function book_add(){
@@ -52,6 +53,18 @@ class c_book extends CI_Controller {
 		$this->m_book->update_book();
 		redirect('/c_index/','refresh');
 	
+	}
+
+	public function book_lend(){
+
+		$this->m_book->book_lend();
+		redirect('/c_index/','refresh');
+	}
+
+	public function book_lend_view(){
+
+		$data['query'] = $this->m_book->view_all_requests();
+		$this->load->view('v_lend',$data);
 	}
 	
 }

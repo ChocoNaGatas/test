@@ -44,6 +44,28 @@
 			
 		}
 
+		public function book_lend(){
+			$bookid = htmlspecialchars($_POST['bookid']);
+			$reqid = htmlspecialchars($_POST['reqid']);
+			$status = $this->db->query("Select book_status from book where book_id='$bookid'")->result();
+			$data = array(
+			
+				'trans_status' => 'PENDING',
+				//'due_date' => DATE_ADD(NOW(), INTERVAL 5 DAY),
+				'request_id' => $reqid
+				
+			);
+
+			$this->db->query("Update book set book_status='ON LOAN' where book_id='$bookid'");
+			
+			$this->db->insert('transaction', $data);
+			$this->db->query("Delete from request where request_id='$reqid'");
+
+			//$this->db->query("Update transaction set due_date='DATE_ADD(NOW(), INTERVAL 5 DAY)' where request_id='$reqid'");
+			//$this->db->set('date = DATE_ADD(NOW(), INTERVAL 5 DAY)'); 
+			
+		}
+
 		public function view_all_books()
 		{
 			return $this->db->query("Select * from book;")->result();
@@ -53,6 +75,15 @@
 		{
 			$bookid = htmlspecialchars($_POST['bookid']);
 			return $this->db->query("Select * from book where book_id = '$bookid'")->result();
+		}
+
+		public function view_all_trans(){
+			return $this->db->query("Select * from transaction;")->result();
+		}
+
+		public function view_all_requests(){
+			$bookid = htmlspecialchars($_POST['bookid']);
+			return $this->db->query("Select b.call_no, b.title, b.book_status, r.request_date, r.request_status, u.name, r.request_id, b.book_id, u.library_id from book b, request r, user u where r.book_id = b.book_id and r.library_id = u.library_id and r.book_id=$bookid;")->result(); 
 		}
 
 	}
